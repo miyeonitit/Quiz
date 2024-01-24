@@ -1,10 +1,19 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./Home.module.css";
+import { useTimer } from "../../components/Provider/TimerContextProvider";
 
 import Button from "../../components/Button/Button";
 
+import styles from "./Home.module.css";
+
 const Home = () => {
+  const { resetTimer } = useTimer();
+
+  useEffect(() => {
+    resetTimer();
+  }, []);
+
   return (
     <div className={styles.home_wrapper}>
       <div className={styles.home_title_box}>
