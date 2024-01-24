@@ -13,3 +13,11 @@
 .quiz_start_button:hover {
   background-color: rgba(145, 168, 237, 0.9);
 }
+
+.actived {
+  background-color: rgb(71 92 153);
+}
+
+.actived:hover {
+  background-color: rgb(71 92 153);
+}

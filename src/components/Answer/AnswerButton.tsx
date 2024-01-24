@@ -2,12 +2,23 @@ import styles from "./AnswerButton.module.css";
 
 type answerButtonProps = {
   onClick?: () => void;
-  children: string;
+  isActived: boolean;
+  isDisabled: boolean;
+  children: string | number;
 };
 
-const AnswerButton: React.FC<answerButtonProps> = ({ onClick, children }) => {
+const AnswerButton: React.FC<answerButtonProps> = ({
+  onClick,
+  isActived,
+  isDisabled,
+  children,
+}) => {
   return (
-    <button className={styles.quiz_start_button} onClick={onClick}>
+    <button
+      className={`${styles.quiz_start_button} ${isActived && styles.actived}`}
+      onClick={onClick}
+      disabled={isDisabled}
+    >
       {children}
     </button>
   );
