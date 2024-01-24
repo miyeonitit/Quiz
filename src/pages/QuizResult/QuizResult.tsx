@@ -1,5 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { TConductorInstance } from "react-canvas-confetti/dist/types";
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 import { countTimer } from "../../store/timerStore";
 import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
@@ -9,12 +12,16 @@ import styles from "./QuizResult.module.css";
 import { Link } from "react-router-dom";
 
 const QuizResult: React.FC = () => {
+  const navigate = useNavigate();
+
   // recoil 상태 관리 - 정답 개수, 오답 개수
   const correctAnswerLength = useRecoilValue(correctAnswer);
   const incorrectAnswerLength = useRecoilValue(incorrectAnswer);
 
   // recoil 상태 관리 - 현재 카운트된 time 저장
   const timer = useRecoilValue(countTimer);
+
+  const [conductor, setConductor] = useState<TConductorInstance>();
 
   const calculateScore = (correctAnswer: number): number => {
     const MAX_SCORE = 100;
@@ -24,12 +31,34 @@ const QuizResult: React.FC = () => {
     return correctAnswer * pointsPerQuestion;
   };
 
+  const controlConfetti = () => {
+    conductor?.run({ speed: 0.5 });
+
+    setTimeout(() => {
+      conductor?.stop();
+    }, 3000);
+  };
+
+  const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
+    setConductor(conductor);
+
+    // conductor가 초기화된 이후에 controlConfetti 호출
+    controlConfetti();
+  };
+
   useEffect(() => {
     if (!correctAnswerLength && !incorrectAnswerLength) {
       alert("처음부터 퀴즈를 풀어주세요!");
-      // 홈으로 이동
+      navigate("/");
     }
   }, []);
+
+  // conductor가 초기화된 이후에 controlConfetti 호출
+  useEffect(() => {
+    if (conductor) {
+      controlConfetti();
+    }
+  }, [conductor, controlConfetti]);
 
   return (
     <div className={styles.quiz_result_wrapper}>
@@ -71,6 +100,8 @@ const QuizResult: React.FC = () => {
           <Button>다시 풀어보기</Button>
         </Link>
       </footer>
+
+      <Fireworks onInit={onInit} />
     </div>
   );
 };
