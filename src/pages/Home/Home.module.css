@@ -9,21 +9,6 @@
   margin-top: 20px;
 }
 
-.quiz_start_button {
-  padding: 18px 0px;
-  border: none;
-  border-radius: 20px;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  background-color: rgb(100, 149, 237);
-  cursor: pointer;
-}
-
-.quiz_start_button:hover {
-  background-color: rgba(100, 149, 237, 0.9);
-}
-
 .footer_tag {
   font-size: 14px;
   font-weight: 500;

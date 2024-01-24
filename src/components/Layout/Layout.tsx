@@ -6,7 +6,7 @@ type childrenProps = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: childrenProps) => {
+const Layout: React.FC<childrenProps> = ({ children }) => {
   return (
     <div className={styles.layout_wrapper}>
       <div className={styles.layout_box}>{children}</div>

@@ -1,0 +1,15 @@
+.quiz_start_button {
+  width: 100%;
+  padding: 16px 0px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(100, 149, 237);
+  cursor: pointer;
+}
+
+.quiz_start_button:hover {
+  background-color: rgba(100, 149, 237, 0.9);
+}
