@@ -27,6 +27,12 @@
   height: 250px;
 }
 
+.quiz_score {
+  font-size: 50px;
+  font-weight: 800;
+  color: rgb(100, 149, 237);
+}
+
 .quiz_result_table_box {
   display: inline-block;
   margin-top: 14px;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 
 import { countTimer } from "../../store/timerStore";
@@ -24,6 +24,13 @@ const QuizResult: React.FC = () => {
     return correctAnswer * pointsPerQuestion;
   };
 
+  useEffect(() => {
+    if (!correctAnswerLength && !incorrectAnswerLength) {
+      alert("처음부터 퀴즈를 풀어주세요!");
+      // 홈으로 이동
+    }
+  }, []);
+
   return (
     <div className={styles.quiz_result_wrapper}>
       <div className={styles.quiz_timer_infomation}>
@@ -32,7 +39,9 @@ const QuizResult: React.FC = () => {
       </div>
 
       <div className={styles.quiz_result_contents}>
-        <h1>{calculateScore(correctAnswerLength)}점</h1>
+        <h1 className={styles.quiz_score}>
+          {calculateScore(correctAnswerLength)}점
+        </h1>
 
         <div>차트 표기</div>
 

@@ -12,9 +12,13 @@ import AnswerResult from "./components/AnswerResult";
 
 type quizComponentProps = {
   data: questionListType;
+  currentQuestionIndex: number;
 };
 
-const QuizComponent: React.FC<quizComponentProps> = ({ data }) => {
+const QuizComponent: React.FC<quizComponentProps> = ({
+  data,
+  currentQuestionIndex,
+}) => {
   // recoil 상태 관리 - 정답 개수, 오답 개수 저장
   const setCorrectAnswer = useSetRecoilState(correctAnswer);
   const setIncorrectAnswer = useSetRecoilState(incorrectAnswer);
@@ -53,11 +57,13 @@ const QuizComponent: React.FC<quizComponentProps> = ({ data }) => {
 
     // 데이터 가공 전 <> 후가 화면에 렌더링되는 이슈로 setState
     setAnswerList(data.incorrect_answers);
+  }, [data]);
 
+  useEffect(() => {
     // 선택했던 답 초기화
     setRate("");
     setSelectedAnswer("");
-  }, [data]);
+  }, [currentQuestionIndex]);
 
   return (
     <div className={styles.quiz_question_wrapper}>
@@ -81,7 +87,7 @@ const QuizComponent: React.FC<quizComponentProps> = ({ data }) => {
       </div>
 
       {/* 선택한 답안에 대한 정답, 오답 안내 컴포넌트 */}
-      {rate && (
+      {rate && selectedAnswer && (
         <div className={styles.quiz_question_result_box}>
           <AnswerResult rate={rate} correctAnswer={data.correct_answer} />
         </div>

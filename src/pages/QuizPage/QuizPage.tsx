@@ -58,7 +58,10 @@ const QuizPage: React.FC = () => {
     <>
       {questionList?.length ? (
         <div className={styles.quiz_page_wrapper}>
-          <QuizComponent data={questionList[currentQuestionIndex]} />
+          <QuizComponent
+            data={questionList[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
+          />
 
           <footer className={styles.footer_box}>
             {/* 버튼 활성화 조건 : 현재 문항의 인덱스 + 1 === 정답 개수 + 오답 개수 */}
