@@ -1,0 +1,40 @@
+.data_fetching_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading_spinner_box {
+  margin-left: 3px;
+  margin-top: 20px;
+  margin-bottom: 36px;
+}
+
+.loading_spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgb(197, 217, 255);
+  border-top: 5px solid rgb(100, 149, 237);
+  border-radius: 50%;
+
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
