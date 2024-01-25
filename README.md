@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Animal Quiz App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/> <img src="https://img.shields.io/badge/CSS Modules-000000?style=flat-square&logo=css modules&logoColor=white"/> <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=recoil&logoColor=white"/>
 
-## Available Scripts
+<div style="display: flex;">
+<div style="width: 20%;">
+<img src="https://github.com/miyeonitit/Quiz/assets/96506411/2bfcadd7-5a87-479e-9afd-e14348fa140c" width="200"  />
+</div>
 
-In the project directory, you can run:
+<div style="width: 80%; padding-left:20px;">
+- open API 사용 (https://opendb.com/api_config.php)
+<br />
+- 테스트 코드 작성 후 배포 예정
+<br />
+- 오답노트 기능 추가 예정
+</div>
+</div>
 
-### `npm start`
+## Use skills
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React ContextAPI** : `TimerContextProvider`로 타이머 카운트 초를 전역적으로 관리하여 타이머 기능 구현
+- **Recoil** : 정답/오답 개수와 타이머 카운트 초 상태 관리
+- **react-canvas-confetti** : 퀴즈 결과 페이지에서 confetti(빵빠레) 애니메이션 구현
+- **recharts** : 퀴즈 결과 페이지에서 정답/오답 개수를 차트로 구현
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project directory
 
-### `npm test`
+```
+┌─ 📁 src
+├── 📁 assets
+├── 📁 components
+├── 📁 pages
+     └── 📁 Home
+     └── 📁 QuizPage
+     └── 📁 QuizResult
+├── 📁 store
+├── 📁 type
+└── 📁 utils
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### pages
 
-### `npm run build`
+- `/Home` : 메인 페이지
+- `/QuizPage` : 퀴즈를 풀 수 있는 페이지
+- `/QuizResult` : 퀴즈 결과 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### store
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Recoil atom store
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `answerStore.ts` : 정답, 오답 개수를 저장
+- `timerStore.ts` : 마지막 문제의 정답을 선택 후, 결과페이지로 이동하기까지의 타이머 문자열을 저장
 
-### `npm run eject`
+### type
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `questionListType.ts` : open API의 question response type 저장
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### utils
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `formatTimer.ts` : milliseconds 단위의 카운트 초를 `00:00` 단위로 형식을 변환하는 메서드
