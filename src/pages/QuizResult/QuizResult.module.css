@@ -11,7 +11,7 @@
   padding: 10px 16px;
   border-radius: 16px;
   border: 4px solid rgb(197, 217, 255);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: gray;
 }
@@ -24,18 +24,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px;
 }
 
 .quiz_score {
+  margin-bottom: 20px;
   font-size: 50px;
   font-weight: 800;
   color: rgb(100, 149, 237);
 }
 
+.quiz_chart_box {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .quiz_result_table_box {
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 50px;
 }
 
 .quiz_result_table {

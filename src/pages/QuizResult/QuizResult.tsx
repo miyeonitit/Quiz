@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { TConductorInstance } from "react-canvas-confetti/dist/types";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 import { countTimer } from "../../store/timerStore";
 import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
+import Chart from "../../components/Chart/Chart";
 import Button from "../../components/Button/Button";
 
 import styles from "./QuizResult.module.css";
-import { Link } from "react-router-dom";
 
 const QuizResult: React.FC = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const QuizResult: React.FC = () => {
   // recoil 상태 관리 - 현재 카운트된 time 저장
   const timer = useRecoilValue(countTimer);
 
+  // confetti 효과를 위한 state
   const [conductor, setConductor] = useState<TConductorInstance>();
 
   const calculateScore = (correctAnswer: number): number => {
@@ -31,19 +32,21 @@ const QuizResult: React.FC = () => {
     return correctAnswer * pointsPerQuestion;
   };
 
-  const controlConfetti = () => {
-    conductor?.run({ speed: 0.5 });
-
-    setTimeout(() => {
-      conductor?.stop();
-    }, 3000);
-  };
-
+  // confetti init
   const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
     setConductor(conductor);
 
     // conductor가 초기화된 이후에 controlConfetti 호출
     controlConfetti();
+  };
+
+  // confetti 3초동안 실행
+  const controlConfetti = () => {
+    conductor?.run({ speed: 1 });
+
+    setTimeout(() => {
+      conductor?.stop();
+    }, 3000);
   };
 
   useEffect(() => {
@@ -53,7 +56,7 @@ const QuizResult: React.FC = () => {
     }
   }, []);
 
-  // conductor가 초기화된 이후에 controlConfetti 호출
+  // conductor가 초기화된 이후 controlConfetti 호출
   useEffect(() => {
     if (conductor) {
       controlConfetti();
@@ -64,15 +67,20 @@ const QuizResult: React.FC = () => {
     <div className={styles.quiz_result_wrapper}>
       <div className={styles.quiz_timer_infomation}>
         퀴즈 마무리까지 모두 ⏰ <span className={styles.bold_tag}>{timer}</span>{" "}
-        시간 소요되셨어요
+        시간 소요되었어요
       </div>
 
       <div className={styles.quiz_result_contents}>
-        <h1 className={styles.quiz_score}>
-          {calculateScore(correctAnswerLength)}점
-        </h1>
+        <div className={styles.quiz_chart_box}>
+          <Chart
+            correctAnswerLength={correctAnswerLength}
+            incorrectAnswerLength={incorrectAnswerLength}
+          />
+        </div>
 
-        <div>차트 표기</div>
+        <h1 className={styles.quiz_score}>
+          ✨ {calculateScore(correctAnswerLength)}점 ✨
+        </h1>
 
         <h2>
           10개의 문제 중{" "}
@@ -96,9 +104,9 @@ const QuizResult: React.FC = () => {
       <footer className={styles.quiz_result_footer}>
         <Button>오답노트 작성하기</Button>
 
-        <Link to="/">
-          <Button>다시 풀어보기</Button>
-        </Link>
+        {/* <Link to="/"> */}
+        <Button onClick={() => navigate("/")}>다시 풀어보기</Button>
+        {/* </Link> */}
       </footer>
 
       <Fireworks onInit={onInit} />
