@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { questionListType } from "../../type/questionListType";
+import { useTimer } from "../../components/Provider/TimerContextProvider";
 
 import QuizComponent from "../../components/Quiz/QuizComponent";
 import FetchingDataLoading from "../../components/Loading/FetchingDataLoading";
 
 const QuizPage: React.FC = () => {
+  const { startTimer } = useTimer();
+
   // API response data를 담는 state
   const [questionList, setQuestionList] = useState<questionListType[]>([]);
 
@@ -28,6 +31,12 @@ const QuizPage: React.FC = () => {
   useEffect(() => {
     fetchingData();
   }, []);
+
+  useEffect(() => {
+    if (questionList?.length) {
+      startTimer();
+    }
+  }, [questionList, startTimer]);
 
   return (
     <>

@@ -6,26 +6,35 @@ type childrenProps = {
 
 const TimerContext = createContext({
   timer: 0,
+  startTimer: () => {},
   resetTimer: () => {},
 });
 
 export const TimerContextProvider: React.FC<childrenProps> = ({ children }) => {
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState<number>(0);
+  const [start, setStart] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log(start, "start");
+
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer + 1);
     }, 1000);
 
-    return () => clearInterval(interval);
+    return (): void => clearInterval(interval);
   }, []);
 
-  const resetTimer = () => {
+  const startTimer = (): void => {
+    setStart(true);
+  };
+
+  const resetTimer = (): void => {
     setTimer(0);
+    setStart(false);
   };
 
   return (
-    <TimerContext.Provider value={{ timer, resetTimer }}>
+    <TimerContext.Provider value={{ timer, startTimer, resetTimer }}>
       {children}
     </TimerContext.Provider>
   );
