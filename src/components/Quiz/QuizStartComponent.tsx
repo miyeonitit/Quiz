@@ -26,7 +26,7 @@ const QuizStartComponent = () => {
 
       <footer>
         <Link to="/quiz">
-          <Button data-cy="quizStartButton">클릭하여 퀴즈 풀기</Button>
+          <Button data-cy="quizStartButton">퀴즈 풀기</Button>
         </Link>
 
         <div className={styles.footer_tag}>Quiz-app</div>

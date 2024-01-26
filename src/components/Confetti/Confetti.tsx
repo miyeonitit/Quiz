@@ -31,11 +31,7 @@ const Confetti: React.FC = () => {
     }
   }, [conductor, controlConfetti]);
 
-  return (
-    <>
-      <Fireworks onInit={onInit} />
-    </>
-  );
+  return <Fireworks onInit={onInit} />;
 };
 
 export default Confetti;

@@ -5,10 +5,10 @@ import { useSetRecoilState } from "recoil";
 import { correctAnswer, incorrectAnswer } from "../../../store/answerStore";
 import { questionListType } from "../../../type/questionListType";
 
+import AnswerResult from "./AnswerResult";
 import AnswerButton from "../../Answer/AnswerButton";
 
 import styles from "./QuestionAnswer.module.css";
-import AnswerResult from "./AnswerResult";
 
 type quizComponentProps = {
   data: questionListType;
@@ -69,7 +69,7 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
     <div className={styles.quiz_question_wrapper}>
       <div className={styles.quiz_question_box}>
         <h1 className={styles.quiz_question_mark}>Q.</h1>
-        <h1>{data.question}</h1>
+        <h1 data-cy="question">{data.question}</h1>
       </div>
 
       {/* 4지선다형 답안 컴포넌트 */}
@@ -88,7 +88,10 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
 
       {/* 선택한 답안에 대한 정답, 오답 안내 컴포넌트 */}
       {rate && selectedAnswer && (
-        <div className={styles.quiz_question_result_box}>
+        <div
+          className={styles.quiz_question_result_box}
+          data-cy="aboutAnswerInfoBox"
+        >
           <AnswerResult rate={rate} correctAnswer={data.correct_answer} />
         </div>
       )}

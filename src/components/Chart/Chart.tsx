@@ -16,10 +16,10 @@ const Chart: React.FC<chartProps> = ({
   ];
 
   return (
-    <div>
+    <div data-cy="quizChart">
       <PieChart width={300} height={300}>
         <Pie
-          dataKey="value"
+          dataKey="quizChart"
           data={data}
           cx="50%"
           cy="50%"

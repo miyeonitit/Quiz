@@ -24,7 +24,10 @@ const QuizResultComponent: React.FC = () => {
   return (
     <div className={styles.quiz_result_wrapper}>
       <div className={styles.quiz_timer_infomation}>
-        퀴즈 마무리까지 모두 ⏰ <span className={styles.bold_tag}>{timer}</span>{" "}
+        퀴즈 마무리까지 모두 ⏰{" "}
+        <span className={styles.bold_tag} data-cy="timerText">
+          {timer}
+        </span>{" "}
         시간 소요되었어요
       </div>
 
@@ -54,19 +57,31 @@ const QuizResultComponent: React.FC = () => {
         <div className={styles.quiz_result_table_box}>
           <div className={styles.quiz_result_table}>
             <div className={styles.correct_answers_tag}>정답</div>
-            <div className={styles.answers_length}>{correctAnswerLength}</div>
+            <div
+              className={styles.answers_length}
+              data-cy="correctAnswersLength"
+            >
+              {correctAnswerLength}
+            </div>
           </div>
 
           <div className={styles.quiz_result_table}>
             <div className={styles.incorrect_answers_tag}>오답</div>
-            <div className={styles.answers_length}>{incorrectAnswerLength}</div>
+            <div
+              className={styles.answers_length}
+              data-cy="incorrectAnswersLength"
+            >
+              {incorrectAnswerLength}
+            </div>
           </div>
         </div>
       </div>
 
       <footer className={styles.quiz_result_footer}>
         <Button>오답노트 작성하기</Button>
-        <Button onClick={() => navigate("/")}>다시 풀어보기</Button>
+        <Button onClick={() => navigate("/")} data-cy="goToHomeButton">
+          다시 풀어보기
+        </Button>
       </footer>
     </div>
   );

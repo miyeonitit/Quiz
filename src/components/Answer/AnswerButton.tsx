@@ -18,6 +18,7 @@ const AnswerButton: React.FC<answerButtonProps> = ({
       className={`${styles.quiz_start_button} ${isActived && styles.actived}`}
       onClick={onClick}
       disabled={isDisabled}
+      data-cy="answerButton"
     >
       {children}
     </button>

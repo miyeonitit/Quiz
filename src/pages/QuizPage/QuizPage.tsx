@@ -43,7 +43,7 @@ const QuizPage: React.FC = () => {
       {questionList?.length ? (
         <QuizComponent questionList={questionList} />
       ) : (
-        <FetchingDataLoading />
+        <FetchingDataLoading data-cy="fetchingDataLoading" />
       )}
     </>
   );

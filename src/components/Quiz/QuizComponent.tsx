@@ -51,6 +51,7 @@ const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
               onClick={() => {
                 setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
               }}
+              data-cy="nextQuizButton"
             >
               다음 문제
             </Button>
@@ -61,7 +62,9 @@ const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
           ))}
 
         <div className={styles.footer_contents}>
-          <div className={styles.timer}>⏰ {formatTimer(timer)}</div>
+          <div className={styles.timer} data-cy="timerDisplay">
+            ⏰ {formatTimer(timer)}
+          </div>
           <div className={styles.question_length}>
             {currentQuestionIndex + 1} / 10
           </div>
