@@ -9,10 +9,12 @@ import QuizStartComponent from "../../components/Quiz/QuizStartComponent";
 const Home = () => {
   const { resetTimer } = useTimer();
 
+  // recoil 상태 관리 - 정답 개수, 오답 개수
   const setCorrectAnswerLength = useSetRecoilState(correctAnswer);
   const setIncorrectAnswerLength = useSetRecoilState(incorrectAnswer);
 
   useEffect(() => {
+    // init timer, Recoil values in Home page
     resetTimer();
     setCorrectAnswerLength(0);
     setIncorrectAnswerLength(0);
