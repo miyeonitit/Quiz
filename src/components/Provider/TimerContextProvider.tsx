@@ -15,8 +15,6 @@ export const TimerContextProvider: React.FC<childrenProps> = ({ children }) => {
   const [start, setStart] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(start, "start");
-
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer + 1);
     }, 1000);
