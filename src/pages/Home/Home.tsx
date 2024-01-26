@@ -1,47 +1,26 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 
 import { useTimer } from "../../components/Provider/TimerContextProvider";
+import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
 
-import Button from "../../components/Button/Button";
-
-import styles from "./Home.module.css";
-
-import logo from "../../assets/logo/nyang_foot.png";
+import QuizStartComponent from "../../components/Quiz/QuizStartComponent";
 
 const Home = () => {
   const { resetTimer } = useTimer();
 
+  // recoil 상태 관리 - 정답 개수, 오답 개수
+  const setCorrectAnswerLength = useSetRecoilState(correctAnswer);
+  const setIncorrectAnswerLength = useSetRecoilState(incorrectAnswer);
+
   useEffect(() => {
+    // init timer, Recoil values in Home page
     resetTimer();
-  }, []);
+    setCorrectAnswerLength(0);
+    setIncorrectAnswerLength(0);
+  }, [resetTimer, setCorrectAnswerLength, setIncorrectAnswerLength]);
 
-  return (
-    <div className={styles.home_wrapper}>
-      <div className={styles.home_title_box}>
-        <h1>
-          알쏭달쏭 <span className={styles.bold_tag}>동물 퀴즈</span>를
-          풀어볼까요?
-        </h1>
-      </div>
-
-      <div className={styles.home_logo_image_box}>
-        <img
-          src={logo}
-          className={styles.home_logo_image}
-          alt="quiz-app-logo-image"
-        />
-      </div>
-
-      <footer>
-        <Link to="/quiz">
-          <Button>클릭하여 퀴즈 풀기</Button>
-        </Link>
-
-        <div className={styles.footer_tag}>Quiz-app</div>
-      </footer>
-    </div>
-  );
+  return <QuizStartComponent />;
 };
 
 export default Home;
