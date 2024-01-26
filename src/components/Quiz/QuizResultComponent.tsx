@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { countTimer } from "../../store/timerStore";
 import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
-import Chart from "../../components/Chart/Chart";
-import Button from "../../components/Button/Button";
-import Confetti from "../../components/Confetti/Confetti";
+import { calculateScore } from "../../utils/calculateScore";
 
-import styles from "./QuizResult.module.css";
+import Chart from "../Chart/Chart";
+import Button from "../Button/Button";
 
-const QuizResult: React.FC = () => {
+import styles from "./QuizResultComponent.module.css";
+
+const QuizResultComponent: React.FC = () => {
   const navigate = useNavigate();
-
-  // recoil 상태 관리 - 정답 개수, 오답 개수
-  const correctAnswerLength = useRecoilValue(correctAnswer);
-  const incorrectAnswerLength = useRecoilValue(incorrectAnswer);
 
   // recoil 상태 관리 - 현재 카운트된 time 저장
   const timer = useRecoilValue(countTimer);
 
-  const calculateScore = (correctAnswer: number): number => {
-    const MAX_SCORE = 100;
-    const totalQuestions = correctAnswerLength + incorrectAnswerLength;
-    const pointsPerQuestion = MAX_SCORE / totalQuestions;
-
-    return correctAnswer * pointsPerQuestion;
-  };
-
-  useEffect(() => {
-    if (!correctAnswerLength && !incorrectAnswerLength) {
-      alert("처음부터 퀴즈를 풀어주세요!");
-      navigate("/");
-    }
-  }, []);
+  // recoil 상태 관리 - 정답 개수, 오답 개수
+  const correctAnswerLength = useRecoilValue(correctAnswer);
+  const incorrectAnswerLength = useRecoilValue(incorrectAnswer);
 
   return (
     <div className={styles.quiz_result_wrapper}>
@@ -51,7 +37,12 @@ const QuizResult: React.FC = () => {
         </div>
 
         <h1 className={styles.quiz_score}>
-          ✨ {calculateScore(correctAnswerLength)}점 ✨
+          ✨{" "}
+          {calculateScore(
+            correctAnswerLength,
+            correctAnswerLength + incorrectAnswerLength
+          )}
+          점 ✨
         </h1>
 
         <h2>
@@ -77,11 +68,8 @@ const QuizResult: React.FC = () => {
         <Button>오답노트 작성하기</Button>
         <Button onClick={() => navigate("/")}>다시 풀어보기</Button>
       </footer>
-
-      {/* confetti(빵빠레) 애니메이션 컴포넌트 */}
-      <Confetti />
     </div>
   );
 };
 
-export default QuizResult;
+export default QuizResultComponent;

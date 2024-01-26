@@ -1,97 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
-import { useSetRecoilState } from "recoil";
-
-import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
 import { questionListType } from "../../type/questionListType";
+import { countTimer } from "../../store/timerStore";
+import { formatTimer } from "../../utils/formatTimer";
+import { useTimer } from "../Provider/TimerContextProvider";
+import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
 
-import AnswerButton from "../Answer/AnswerButton";
+import Button from "../Button/Button";
+import QuestionAnswer from "./components/QuestionAnswer";
 
 import styles from "./QuizComponent.module.css";
-import AnswerResult from "./components/AnswerResult";
 
-type quizComponentProps = {
-  data: questionListType;
-  currentQuestionIndex: number;
+type quizProps = {
+  questionList: questionListType[];
 };
 
-const QuizComponent: React.FC<quizComponentProps> = ({
-  data,
-  currentQuestionIndex,
-}) => {
-  // recoil 상태 관리 - 정답 개수, 오답 개수 저장
-  const setCorrectAnswer = useSetRecoilState(correctAnswer);
-  const setIncorrectAnswer = useSetRecoilState(incorrectAnswer);
+const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
+  const { timer } = useTimer();
 
-  // 4지선다형 답안을 담는 배열 state
-  const [answerList, setAnswerList] = useState<string[]>([]);
+  // recoil 상태 관리 - 현재 카운트된 time 저장
+  const setCountTimer = useSetRecoilState(countTimer);
 
-  // 정답: correct <> 오답: incorrect 을 구별하는 state
-  const [rate, setRate] = useState<string>("");
+  // recoil 상태 관리 - 정답 개수, 오답 개수
+  const correctAnswerLength = useRecoilValue(correctAnswer);
+  const incorrectAnswerLength = useRecoilValue(incorrectAnswer);
 
-  // 선택한 답을 저장하는 state
-  const [selectedAnswer, setSelectedAnswer] = useState<string | number>("");
+  // 문제 순서를 조절하는 index state
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 
-  const checkAnswer = (answer: string) => {
-    if (answer === data.correct_answer) {
-      // 정답일 경우
-      setRate("correct");
-      setCorrectAnswer((prevCorrect) => prevCorrect + 1);
-    } else {
-      // 오답일 경우
-      setRate("incorrect");
-      setIncorrectAnswer((prevIncorrect) => prevIncorrect + 1);
-    }
-
-    // 선택한 답 저장
-    setSelectedAnswer(answer);
+  const saveCountTime = () => {
+    setCountTimer(formatTimer(timer));
   };
 
-  useEffect(() => {
-    // 0부터 3까지의 랜덤 정수 생성
-    const RANDOM_INDEX = Math.floor(Math.random() * 4);
-
-    // 4지선다형 답안 배열 데이터 가공
-    // correct_answer와 incorrect_answers를 합쳐 랜덤 순서 가공 -> 원본 data 배열에 저장됨
-    data.incorrect_answers.splice(RANDOM_INDEX, 0, data.correct_answer);
-
-    // 데이터 가공 전 <> 후가 화면에 렌더링되는 이슈로 setState
-    setAnswerList(data.incorrect_answers);
-  }, [data]);
-
-  useEffect(() => {
-    // 선택했던 답 초기화
-    setRate("");
-    setSelectedAnswer("");
-  }, [currentQuestionIndex]);
-
   return (
-    <div className={styles.quiz_question_wrapper}>
-      <div className={styles.quiz_question_box}>
-        <h1 className={styles.quiz_question_mark}>Q.</h1>
-        <h1>{data.question}</h1>
-      </div>
+    <div className={styles.quiz_page_wrapper}>
+      {/* 퀴즈 문제와 답 컴포넌트 */}
+      <QuestionAnswer
+        data={questionList[currentQuestionIndex]}
+        currentQuestionIndex={currentQuestionIndex}
+      />
 
-      {/* 4지선다형 답안 컴포넌트 */}
-      <div className={styles.quiz_answer_box}>
-        {answerList.map((answer: string) => (
-          <AnswerButton
-            key={answer}
-            onClick={() => checkAnswer(answer)}
-            isActived={answer === selectedAnswer}
-            isDisabled={!!rate}
-          >
-            {answer}
-          </AnswerButton>
-        ))}
-      </div>
+      <footer className={styles.footer_box}>
+        {/* 버튼 활성화 조건 : 현재 문항의 인덱스 + 1 === 정답 개수 + 오답 개수 */}
+        {currentQuestionIndex + 1 ===
+          correctAnswerLength + incorrectAnswerLength &&
+          (questionList.length > currentQuestionIndex + 1 ? (
+            <Button
+              onClick={() => {
+                setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+              }}
+            >
+              다음 문제
+            </Button>
+          ) : (
+            <Link to="/result">
+              <Button onClick={() => saveCountTime()}>결과 보기</Button>
+            </Link>
+          ))}
 
-      {/* 선택한 답안에 대한 정답, 오답 안내 컴포넌트 */}
-      {rate && selectedAnswer && (
-        <div className={styles.quiz_question_result_box}>
-          <AnswerResult rate={rate} correctAnswer={data.correct_answer} />
+        <div className={styles.footer_contents}>
+          <div className={styles.timer}>⏰ {formatTimer(timer)}</div>
+          <div className={styles.question_length}>
+            {currentQuestionIndex + 1} / 10
+          </div>
         </div>
-      )}
+      </footer>
     </div>
   );
 };

@@ -1,0 +1,25 @@
+.quiz_question_wrapper {
+  margin-bottom: 15px;
+}
+
+.quiz_question_box {
+  display: flex;
+  margin-bottom: 90px;
+}
+
+.quiz_question_mark {
+  margin-right: 10px;
+  color: rgb(100, 149, 237);
+}
+
+.quiz_answer_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+}
+
+.quiz_question_result_box {
+  text-align: center;
+  margin-top: 50px;
+}
