@@ -11,8 +11,8 @@ const Chart: React.FC<chartProps> = ({
   incorrectAnswerLength,
 }) => {
   const data = [
-    { x: "correctAnswer", y: correctAnswerLength },
-    { x: "incorrectAnswer", y: incorrectAnswerLength },
+    { x: "correctAnswer", y: correctAnswerLength, label: "정답" },
+    { x: "incorrectAnswer", y: incorrectAnswerLength, label: "오답" },
   ];
 
   return (
