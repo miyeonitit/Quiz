@@ -8,6 +8,7 @@ import { calculateScore } from "../../utils/calculateScore";
 
 import Chart from "../Chart/Chart";
 import Button from "../Button/Button";
+import SubTitle from "../SubTitle/SubTitle";
 
 import styles from "./QuizResultComponent.module.css";
 
@@ -23,13 +24,13 @@ const QuizResultComponent: React.FC = () => {
 
   return (
     <div className={styles.quiz_result_wrapper}>
-      <div className={styles.quiz_timer_infomation}>
+      <SubTitle>
         퀴즈 마무리까지 모두 ⏰{" "}
         <span className={styles.bold_tag} data-cy="timerText">
           {timer}
         </span>{" "}
         시간 소요되었어요
-      </div>
+      </SubTitle>
 
       <div className={styles.quiz_result_contents}>
         <div className={styles.quiz_chart_box}>
@@ -80,7 +81,9 @@ const QuizResultComponent: React.FC = () => {
       </div>
 
       <footer className={styles.quiz_result_footer}>
-        <Button>오답노트 작성하기</Button>
+        {incorrectAnswerLength && (
+          <Button onClick={() => navigate("/note")}>오답노트</Button>
+        )}
         <Button onClick={() => navigate("/")} data-cy="goToHomeButton">
           다시 풀어보기
         </Button>
