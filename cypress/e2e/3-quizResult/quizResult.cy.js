@@ -19,8 +19,6 @@ describe("Quiz Result Page", () => {
   });
 
   it("정답과 오답 개수와 차트를 확인할 수 있다", () => {
-    // 테스트코드 상에서는 Recoil atom value를 불러오지 못한다는 한계가 있음
-
     // 정답 개수 확인
     cy.get("[data-cy=correctAnswersLength]").then(($correctAnswersLength) => {
       const correctAnswers = $correctAnswersLength.text();
