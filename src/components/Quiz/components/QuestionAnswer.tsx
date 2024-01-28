@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import { useSetRecoilState } from "recoil";
-
-import { correctAnswer, incorrectAnswer } from "../../../store/answerStore";
 import { questionListType } from "../../../type/questionListType";
+import { answerNoteData } from "../../../store/answerNoteStore";
+import { correctAnswer, incorrectAnswer } from "../../../store/answerStore";
+import { updateAnswerNoteData } from "../../../utils/updateAnswerNoteData";
 
 import AnswerResult from "./AnswerResult";
 import AnswerButton from "../../Answer/AnswerButton";
 
 import styles from "./QuestionAnswer.module.css";
+import Question from "./Question";
 
 type quizComponentProps = {
   data: questionListType;
@@ -22,6 +24,10 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
   // recoil 상태 관리 - 정답 개수, 오답 개수 저장
   const setCorrectAnswer = useSetRecoilState(correctAnswer);
   const setIncorrectAnswer = useSetRecoilState(incorrectAnswer);
+
+  // recoil 상태 관리 - 오답노트를 위한 문제와 정답 정보 저장
+  const answerNoteListData = useRecoilValue(answerNoteData);
+  const setAnswerNoteListData = useSetRecoilState(answerNoteData);
 
   // 4지선다형 답안을 담는 배열 state
   const [answerList, setAnswerList] = useState<string[]>([]);
@@ -41,6 +47,11 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
       // 오답일 경우
       setRate("incorrect");
       setIncorrectAnswer((prevIncorrect) => prevIncorrect + 1);
+
+      // 오답노트에 보내기 위한 data list를 가공하여 recoil 상태관리에 저장
+      setAnswerNoteListData(
+        updateAnswerNoteData(data, answerList, answer, answerNoteListData)
+      );
     }
 
     // 선택한 답 저장
@@ -67,12 +78,7 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
 
   return (
     <div className={styles.quiz_question_wrapper}>
-      <div className={styles.quiz_question_box}>
-        <h2 className={styles.quiz_question_mark}>Q.</h2>
-        <h2 data-cy="question" className={styles.quiz_question}>
-          {data.question}
-        </h2>
-      </div>
+      <Question>{data.question}</Question>
 
       {/* 4지선다형 답안 컴포넌트 */}
       <div className={styles.quiz_answer_box}>
