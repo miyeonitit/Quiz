@@ -68,10 +68,10 @@ const QuestionAnswer: React.FC<quizComponentProps> = ({
   return (
     <div className={styles.quiz_question_wrapper}>
       <div className={styles.quiz_question_box}>
-        <h1 className={styles.quiz_question_mark}>Q.</h1>
-        <h1 data-cy="question" className={styles.quiz_question}>
+        <h2 className={styles.quiz_question_mark}>Q.</h2>
+        <h2 data-cy="question" className={styles.quiz_question}>
           {data.question}
-        </h1>
+        </h2>
       </div>
 
       {/* 4지선다형 답안 컴포넌트 */}
