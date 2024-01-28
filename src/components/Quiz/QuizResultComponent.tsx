@@ -48,11 +48,13 @@ const QuizResultComponent: React.FC = () => {
           점 ✨
         </h1>
 
-        <h2>
-          {correctAnswerLength + incorrectAnswerLength}개의 문제 중{" "}
-          <span className={styles.bold_tag}>{correctAnswerLength}개</span>를
-          맞히셨어요!
-        </h2>
+        <div>
+          <strong>
+            {correctAnswerLength + incorrectAnswerLength}개의 문제 중{" "}
+            <span className={styles.bold_tag}>{correctAnswerLength}개</span>를
+            맞히셨어요!
+          </strong>
+        </div>
 
         <div className={styles.quiz_result_table_box}>
           <div className={styles.quiz_result_table}>

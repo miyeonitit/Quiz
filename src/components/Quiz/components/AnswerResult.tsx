@@ -25,7 +25,7 @@ const AnswerResult: React.FC<answerResultProps> = ({ rate, correctAnswer }) => {
             : styles.quiz_question_incorrect
         }
       >
-        {isCorrect ? "정답" : "오답"}
+        {isCorrect ? "O" : "X"}
       </div>
 
       <div className={styles.quiz_question_result_text}>{resultText}</div>

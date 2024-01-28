@@ -12,6 +12,10 @@
   color: rgb(100, 149, 237);
 }
 
+.quiz_question {
+  width: 100%;
+}
+
 .quiz_answer_box {
   display: flex;
   flex-direction: column;
