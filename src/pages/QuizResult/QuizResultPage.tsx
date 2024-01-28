@@ -14,12 +14,12 @@ const QuizResultPage: React.FC = () => {
   const correctAnswerLength = useRecoilValue(correctAnswer);
   const incorrectAnswerLength = useRecoilValue(incorrectAnswer);
 
-  useEffect(() => {
-    if (!correctAnswerLength && !incorrectAnswerLength) {
-      alert("처음부터 퀴즈를 풀어주세요!");
-      navigate("/");
-    }
-  }, [correctAnswerLength, incorrectAnswerLength]);
+  // useEffect(() => {
+  //   if (!correctAnswerLength && !incorrectAnswerLength) {
+  //     alert("처음부터 퀴즈를 풀어주세요!");
+  //     navigate("/");
+  //   }
+  // }, [correctAnswerLength, incorrectAnswerLength]);
 
   return (
     <>

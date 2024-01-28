@@ -50,22 +50,22 @@
 }
 
 .correct_answers_tag {
-  padding-right: 24px;
-  font-size: 40px;
+  padding-right: 16px;
+  font-size: 20px;
   font-weight: 800;
   color: darkgreen;
 }
 
 .incorrect_answers_tag {
-  padding-right: 24px;
-  font-size: 40px;
+  padding-right: 16px;
+  font-size: 20px;
   font-weight: 800;
   color: red;
 }
 
 .answers_length {
-  padding-left: 24px;
-  font-size: 40px;
+  padding-left: 16px;
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -74,4 +74,5 @@
   flex-direction: column;
   justify-content: space-between;
   height: 120px;
+  margin-top: 20px;
 }
