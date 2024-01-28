@@ -20,8 +20,8 @@ const Chart: React.FC<chartProps> = ({
       <VictoryPie
         colorScale={["green", "red"]}
         data={data}
-        width={300}
-        height={300}
+        width={250}
+        height={250}
       />
     </div>
   );
