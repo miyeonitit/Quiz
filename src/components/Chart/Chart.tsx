@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie } from "recharts";
+import { VictoryPie } from "victory";
 
 type chartProps = {
   correctAnswerLength: number;
@@ -11,22 +11,18 @@ const Chart: React.FC<chartProps> = ({
   incorrectAnswerLength,
 }) => {
   const data = [
-    { name: "correctAnswer", value: correctAnswerLength, fill: "#006400" },
-    { name: "incorrectAnswer", value: incorrectAnswerLength, fill: "#FF0000" },
+    { x: "correctAnswer", y: correctAnswerLength },
+    { x: "incorrectAnswer", y: incorrectAnswerLength },
   ];
 
   return (
     <div data-cy="quizChart">
-      <PieChart width={500} height={500}>
-        <Pie
-          dataKey="quizChart"
-          data={data}
-          cx="50%"
-          cy="50%"
-          outerRadius={100}
-          label
-        />
-      </PieChart>
+      <VictoryPie
+        colorScale={["green", "red"]}
+        data={data}
+        width={300}
+        height={300}
+      />
     </div>
   );
 };
