@@ -1,7 +1,7 @@
 .layout_wrapper {
   display: flex;
   padding: 24px;
-  height: -webkit-fill-available;
+  min-height: 100svh;
   background-color: aliceblue;
 }
 
