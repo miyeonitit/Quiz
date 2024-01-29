@@ -22,8 +22,6 @@ const AnswerNote: React.FC<answerNoteProps> = ({
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
 
-  console.log(data, "data");
-
   // init isToggle state
   useEffect(() => {
     setIsToggle(false);
@@ -69,11 +67,12 @@ const AnswerNote: React.FC<answerNoteProps> = ({
             ? "🔧 여기를 닫고 문제를 다시 풀어볼까요?"
             : "✅ 여기를 눌러 정답을 확인해 보세요"}
         </div>
+
         {isToggle && (
           <div className={styles.toggle_border_box}>
             <div className={styles.toggle_title}>
               <div className={styles.toggle_line}>정답 :</div>
-              <div className={styles.toggle_line}>내가 고른 정답 :</div>
+              <div className={styles.toggle_line}>내가 골랐던 정답 :</div>
             </div>
             <div>
               <div className={styles.toggle_line}>{data.correct_answer}</div>
@@ -83,7 +82,7 @@ const AnswerNote: React.FC<answerNoteProps> = ({
         )}
 
         {/* 풀이과정 메모 Textarea */}
-        <Textarea />
+        <Textarea currentQuestionIndex={currentQuestionIndex} id={data.id} />
       </div>
     </>
   );

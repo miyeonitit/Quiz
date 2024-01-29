@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
+import { calculateScore } from "../../utils/calculateScore";
 import { countTimer } from "../../store/timerStore";
 import { correctAnswer, incorrectAnswer } from "../../store/answerStore";
-import { calculateScore } from "../../utils/calculateScore";
 
 import Chart from "../Chart/Chart";
 import Button from "../Button/Button";
@@ -82,9 +82,9 @@ const QuizResultComponent: React.FC = () => {
 
       <footer className={styles.quiz_result_footer}>
         {incorrectAnswerLength && (
-          <Button onClick={() => navigate("/note")}>오답노트</Button>
+          <Button onClick={(): void => navigate("/note")}>오답노트</Button>
         )}
-        <Button onClick={() => navigate("/")} data-cy="goToHomeButton">
+        <Button onClick={(): void => navigate("/")} data-cy="goToHomeButton">
           다시 풀어보기
         </Button>
       </footer>
