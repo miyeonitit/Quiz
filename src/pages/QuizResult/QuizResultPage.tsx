@@ -19,7 +19,7 @@ const QuizResultPage: React.FC = () => {
       alert("처음부터 퀴즈를 풀어주세요!");
       navigate("/");
     }
-  }, [correctAnswerLength, incorrectAnswerLength]);
+  }, [correctAnswerLength, incorrectAnswerLength, navigate]);
 
   return (
     <>

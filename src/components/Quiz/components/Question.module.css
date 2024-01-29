@@ -1,0 +1,13 @@
+.quiz_question_box {
+  display: flex;
+  margin-bottom: 90px;
+}
+
+.quiz_question_mark {
+  margin-right: 10px;
+  color: rgb(100, 149, 237);
+}
+
+.quiz_question {
+  overflow-wrap: anywhere;
+}

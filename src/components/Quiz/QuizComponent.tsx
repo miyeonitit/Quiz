@@ -30,10 +30,6 @@ const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
   // 문제 순서를 조절하는 index state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 
-  const saveCountTime = () => {
-    setCountTimer(formatTimer(timer));
-  };
-
   return (
     <div className={styles.quiz_page_wrapper}>
       {/* 퀴즈 문제와 답 컴포넌트 */}
@@ -48,8 +44,10 @@ const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
           correctAnswerLength + incorrectAnswerLength &&
           (questionList.length > currentQuestionIndex + 1 ? (
             <Button
-              onClick={() => {
-                setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+              onClick={(): void => {
+                setCurrentQuestionIndex(
+                  (prevIndex: number): number => prevIndex + 1
+                );
               }}
               data-cy="nextQuizButton"
             >
@@ -57,7 +55,9 @@ const QuizComponent: React.FC<quizProps> = ({ questionList }) => {
             </Button>
           ) : (
             <Link to="/result">
-              <Button onClick={() => saveCountTime()}>결과 보기</Button>
+              <Button onClick={(): void => setCountTimer(formatTimer(timer))}>
+                결과 보기
+              </Button>
             </Link>
           ))}
 

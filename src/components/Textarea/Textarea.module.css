@@ -1,0 +1,52 @@
+.quiz_note_box {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(115, 128, 138);
+}
+
+.quiz_note_title {
+  padding: 7px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
+.quiz_note_textarea {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  resize: none;
+  border: 1px solid rgb(211, 230, 255);
+  border-radius: 10px;
+}
+
+.memo_box {
+  position: relative;
+}
+
+.save_memo_text {
+  position: absolute;
+  padding: 10px 15px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 15px;
+  border: 5px solid white;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(95, 148, 194);
+  cursor: pointer;
+}
+
+.save_memo_text:hover {
+  background-color: rgba(95, 148, 194, 0.9);
+}
+
+.updated_status_infomation {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgb(145, 168, 237);
+}
