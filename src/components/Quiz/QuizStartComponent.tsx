@@ -10,7 +10,7 @@ const QuizStartComponent = () => {
   return (
     <div className={styles.home_wrapper}>
       <div className={styles.home_title_box}>
-        <h1>
+        <h1 className={styles.home_title}>
           알쏭달쏭 <span className={styles.bold_tag}>동물 퀴즈</span>를
           풀어볼까요?
         </h1>

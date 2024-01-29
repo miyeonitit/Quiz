@@ -6,6 +6,34 @@
   text-align: center;
 }
 
+.home_title {
+  margin-top: 20px;
+  animation: fadeInDown 1.5s;
+  -webkit-animation: fadeInDown 1.5s;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
 .home_title_box {
   margin-top: 20px;
 }
@@ -16,6 +44,21 @@
 
 .home_logo_image {
   width: 50%;
+  transform-origin: 50% 50%;
+  animation: rotate_image 6s linear infinite;
+  -webkit-animation: rotate_image 6s linear infinite;
+}
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .bold_tag {
