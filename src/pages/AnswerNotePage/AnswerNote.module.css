@@ -1,0 +1,12 @@
+.answer_note_wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.answer_note_box {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
