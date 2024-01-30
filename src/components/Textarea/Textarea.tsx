@@ -20,21 +20,21 @@ const Textarea: React.FC<textareaProps> = ({ currentQuestionIndex, id }) => {
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
 
   // update momo field in Firebase DB
-  const updateMemoValue = async () => {
+  const updateMemoValue = () => {
     const docRef = doc(db, "quiz", `question ${id}`);
 
-    await updateDoc(docRef, {
+    updateDoc(docRef, {
       memo: memoText,
     });
 
-    await setIsUpdated(true);
+    setIsUpdated(true);
   };
 
   useEffect(() => {
     const currentPath = location.pathname;
 
     const handleResizeHeight = (ref: HTMLTextAreaElement) => {
-      ref.style.height = "auto"; //height 초기화
+      ref.style.height = "auto";
       ref.style.height = ref.scrollHeight + "px";
     };
 
