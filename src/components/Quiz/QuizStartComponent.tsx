@@ -24,12 +24,12 @@ const QuizStartComponent = () => {
         />
       </div>
 
-      <footer>
+      <footer className={styles.footer_box}>
         <Link to="/quiz">
           <Button data-cy="quizStartButton">퀴즈 풀기</Button>
         </Link>
 
-        <div className={styles.footer_tag}>Quiz-app</div>
+        <div className={styles.footer_tag}>My Animal Quiz</div>
       </footer>
     </div>
   );
