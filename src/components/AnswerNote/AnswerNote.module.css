@@ -49,7 +49,9 @@
 
 .toggle_border_box {
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
   padding: 20px 0px;
   text-align: center;
@@ -57,17 +59,8 @@
 }
 
 .toggle_title {
-  width: 120px;
   padding-right: 10px;
   font-size: 15px;
   font-weight: 700;
   text-align: center;
-}
-
-.toggle_line {
-  margin-bottom: 10px;
-}
-
-.toggle_line:last-child {
-  margin-bottom: unset;
 }

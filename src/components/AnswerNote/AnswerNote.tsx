@@ -69,16 +69,17 @@ const AnswerNote: React.FC<answerNoteProps> = ({
         </div>
 
         {isToggle && (
-          <div className={styles.toggle_border_box}>
-            <div className={styles.toggle_title}>
-              <div className={styles.toggle_line}>정답 :</div>
-              <div className={styles.toggle_line}>내가 골랐던 정답 :</div>
-            </div>
-            <div>
-              <div className={styles.toggle_line}>{data.correct_answer}</div>
-              <div className={styles.toggle_line}>{data.selected_answer}</div>
-            </div>
-          </div>
+          <table className={styles.toggle_border_box}>
+            <tr>
+              <th className={styles.toggle_title}>정답 :</th>
+              <td>{data.correct_answer}</td>
+            </tr>
+            <tr>
+              <th className={styles.toggle_title}>내가 골랐던 정답 :</th>
+              <td>{data.selected_answer}</td>
+            </tr>
+            <div></div>
+          </table>
         )}
 
         {/* 풀이과정 메모 Textarea */}

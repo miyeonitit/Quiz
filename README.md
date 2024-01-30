@@ -1,4 +1,4 @@
-# 🐾 My Animal Quiz App
+# My Animal Quiz 🐾
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/> <img src="https://img.shields.io/badge/CSS Modules-000000?style=flat-square&logo=css modules&logoColor=white"/> <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=recoil&logoColor=white"/>
 <img src="https://img.shields.io/badge/Cypress-69D3A7?style=flat-square&logo=Cypress&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/> <img src="https://img.shields.io/badge/open API-6BA539?style=flat-square&logo=openAPI&logoColor=white"/>
@@ -96,12 +96,12 @@ Recoil atom store
 
 ## Firebase | Database
 
-> `firebase cli`를 사용하여, 사용자가 선택한 정답/오답을 Recoil store와 Firestore Database에 저장합니다.
+> firebase를 사용하여, 사용자가 선택한 정답/오답을 Recoil store와 Firestore Database에 저장합니다.
 
 **1. Firestore Database를 구성하였습니다.**
 
 - 컬렉션 : quiz
-- 문서 : question `${uuid}`
+- 문서 : question `${uuid}` (퀴즈 문제의 한 단위)
 - 필드 : 사용자가 선택한 정/오답 데이터
 
 <img width="1242" alt="스크린샷 2024-01-29 오후 11 03 50" src="https://github.com/miyeonitit/Quiz/assets/96506411/53c0d160-2ff1-40ff-8763-d53c4e67d101">
